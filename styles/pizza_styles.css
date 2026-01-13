@@ -23,3 +23,19 @@ header {
   padding: 2rem 1rem;
   margin-bottom: 2rem;
 }
+
+header img {
+  float:right;
+  max-width: 200px;
+}
+
+#contact-button {
+  border: none;
+  background-color: darkgreen;
+  border-color: darkgreen;
+  padding: 0.5rem 0.75rem;
+  border-radius: .25rem;
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+}
