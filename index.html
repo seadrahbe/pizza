@@ -23,8 +23,55 @@
       <a id="contact-button" href="#" aria="button">Contact Us</a>
     </header>
 
-    <form>Form</form>
-    
+    <form id="pizza-form" action="#" method="get">
+
+    <!-- Contact Info -->
+    <fieldset>
+      <legend>Contact Info</legend>
+
+      <label for="fname">First Name:</label>
+      <input type="text" id="fname" name="fname">
+
+      <label for="lname">Last Name:</label>
+      <input type="text" id="lname" name="lname">
+
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email">
+      
+    </fieldset>
+
+    <!-- Pick-up or Delivery -->
+     <fieldset>
+      <legend>Select Pickup or Delivery</legend>
+
+      <label for="pickup">
+        <input type="radio" id="pickup" value="pickup" name="method"> Pickup
+      </label>
+
+      <label for="delivery">
+        <input type="radio" id="delivery" value="delivery" name="method"> Delivery
+      </label>
+
+    </fieldset>
+
+    <!-- Toppings -->
+     <fieldset>
+      <legend>Select Toppings</legend>
+
+    </fieldset>
+
+    <!-- Size -->
+     <fieldset>
+      <legend>Pizza Size</legend>
+
+    </fieldset>
+
+    <!-- Submit Button -->
+
+    <button type="submit" id="order-button">Place Order </button>
+  </form>
+
   </main>
+
 </body>
 </html>
