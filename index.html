@@ -57,18 +57,45 @@
     <!-- Toppings -->
      <fieldset>
       <legend>Select Toppings</legend>
-
+        <label for="pepperoni">
+            <input type="checkbox" id="pepperoni" name="toppings[]" value="pepperoni">
+            Pepperoni 
+            </input>
+            <input type="checkbox" id="mushrooms" name="toppings[]" value="mushrooms">
+            Mushrooms
+            </input>
+            <input type="checkbox" id="banana-peppers" name="toppings[]" value="banana-peppers">
+            Banana Peppers
+            </input>
+            <input type="checkbox" id="artichoke" name="toppings[]" value="artichoke">
+            Artichoke
+            </input>
+            <input type="checkbox" id="tomatoes" name="toppings[]" value="tomatoes">
+            Tomatoes
+            </input>
+        </label>
     </fieldset>
 
     <!-- Size -->
      <fieldset>
       <legend>Pizza Size</legend>
-
+        <select id="size" name="size">
+          <option value="none">-- Select a size --</option>
+          <option value="small">Small</option>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
+        </select>
     </fieldset>
 
-    <!-- Submit Button -->
+    <!-- Comment field -->
+      <label for="comment">Comments/Instructions:</label>
+      <textarea rows="5" id="comment" name="comment"></textarea>
+      
+      
+      <label for="discount"> <input type="checkbox" name="discount" name="discount" checked> Sign me up for discounts!</label>
 
-    <button type="submit" id="order-button">Place Order </button>
+    <!-- Submit Button -->
+    <button type="submit" id="order-button">Place Order</button>
   </form>
 
   </main>
