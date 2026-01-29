@@ -4,9 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gioseppi's Pizza</title>
+
+  <!-- favicon -->
   <link rel="icon" href="img/pizza_icon.jpg">
+
+  <!-- stylesheet -->
   <link rel="stylesheet" href="styles/pizza_styles.css">
+
+  <!-- javascript -->
+  <script src = "pizza.js" defer></script>
 </head>
+
 <body>
   <main>
 
@@ -29,13 +37,25 @@
     <fieldset>
       <legend>Contact Info</legend>
 
-      <label for="fname">First Name:</label>
+      <label for="fname">First Name:
+        <span class = "err" id = "err-fname">
+          First name is required
+        </span>
+      </label>
       <input type="text" id="fname" name="fname">
 
-      <label for="lname">Last Name:</label>
+      <label for="lname">Last Name:
+        <span class = "err" id = "err-lname">
+          Last name is required
+        </span>
+      </label>
       <input type="text" id="lname" name="lname">
 
-      <label for="email">Email:</label>
+      <label for="email">Email:
+        <span class = "err" id = "err-email">
+          Email is required.
+        </span>
+      </label>
       <input type="text" id="email" name="email">
       
     </fieldset>
@@ -44,6 +64,10 @@
      <fieldset>
       <legend>Select Pickup or Delivery</legend>
 
+      <span class = "err" id = "err-method">
+          Please select pick-up or delivery.
+      </span>
+
       <label for="pickup">
         <input type="radio" id="pickup" value="pickup" name="method"> Pickup
       </label>
@@ -51,6 +75,8 @@
       <label for="delivery">
         <input type="radio" id="delivery" value="delivery" name="method"> Delivery
       </label>
+
+      
 
     </fieldset>
 
@@ -79,6 +105,7 @@
     <!-- Size -->
      <fieldset>
       <legend>Pizza Size</legend>
+      <span class = "err" id="err-size">Size is required.</span>
         <select id="size" name="size">
           <option value="none">-- Select a size --</option>
           <option value="small">Small</option>
