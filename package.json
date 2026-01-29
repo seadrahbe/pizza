@@ -1,0 +1,24 @@
+{
+  "name": "pizza",
+  "version": "1.0.0",
+  "description": "Pizza node app.",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seadrahbe/pizza.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seadrahbe/pizza/issues"
+  },
+  "homepage": "https://github.com/seadrahbe/pizza#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
