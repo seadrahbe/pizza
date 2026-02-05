@@ -53,10 +53,6 @@ fieldset {
   margin-bottom: 1.25rem;
 }
 
-label {
-  display: block;
-  padding-bottom: .2rem;
-}
 
 input[type="text"], textarea, select {
   width: 100%;

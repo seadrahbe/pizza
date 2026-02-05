@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="styles/pizza_styles.css">
 
   <!-- javascript -->
-  <script src = "pizza.js" defer></script>
+  <script src = "js/pizza.js" defer></script>
 </head>
 
 <body>
@@ -28,10 +28,12 @@
 
       <p>Come try our food!</p>
       
-      <a id="contact-button" href="#" aria="button">Contact Us</a>
+      <!--Link to route, not to physical file-->
+      <a id="contact-button" href="/contact-us" aria="button">Contact Us</a>
     </header>
 
-    <form id="pizza-form" action="#" method="get">
+    <!-- Post method = more secure than get, doesn't pass data in URL -->
+    <form id="pizza-form" action="/submit-order" method="post">
 
     <!-- Contact Info -->
     <fieldset>
