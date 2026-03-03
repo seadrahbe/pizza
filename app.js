@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 // Create a temp array to store orders -- const makes pointer / reference stay, list can grow/shrink
 const orders = [];
 
-// Define our main route (root?) ('/')
+// Define our main route ('/')
 // Default route
 app.get('/', (req, res) => {
     res.sendFile(`${import.meta.dirname}/views/home.html`);
