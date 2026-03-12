@@ -2,6 +2,7 @@
 import express from 'express';
 import mysql2 from 'mysql2';
 import dotenv from 'dotenv';
+import {validateForm} from './validation.js';
 
 // Define a port number where server will listen
 const PORT = 3000;
@@ -63,6 +64,14 @@ app.get('/thank-you', (req, res) => {
 app.post('/submit-order', async(req, res) => {
 
     const order = req.body;
+
+    const valid = validateForm(order);
+
+    if (!valid.isValid) {
+        console.log(valid);
+        res.render('home', {errors: valid.errors});
+        return;
+    }
 
     // Create an array of order data
     const params = [
