@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin</title>
+</head>
+<body>
+  
+  <table>
+    <tbody>
+      <% orders.forEach(order => { %>
+        <tr>
+          <td><%= order.fname %> <%= order.lname %></td>
+          <td><%= order.email %></td>
+          <td><%= order.toppings %></td>
+          <td><%= order.size %></td>
+          <td><%= order.method %></td>
+          <td><%= order.comment %></td>
+          <td><%= order.timestamp.toLocaleString() %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <script>
+      new DataTable('#order-table', {
+        responsive: true
+      });
+  </script>
+</body>
+</html>

@@ -3,15 +3,14 @@ import express from 'express';
 import mysql2 from 'mysql2';
 import dotenv from 'dotenv';
 
+// Define a port number where server will listen
+const PORT = 3000;
+
 // Load environment variables frpm .env
 dotenv.config();
-// console.log(process.env.DB_HOST);
 
 // Create an express application
 const app = express();
-
-// Define a port number where server will listen
-const PORT = 3000;
 
 // Enable static file serving
 app.use(express.static('public'));
@@ -19,8 +18,8 @@ app.use(express.static('public'));
 // "Middleware" allows express to read form data and store it in req.body
 app.use(express.urlencoded({ extended: true }));
 
-// Create a temp array to store orders -- const makes pointer / reference stay, list can grow/shrink
-const orders = [];
+// Set view engine to ejs
+app.set('view engine', 'ejs');
 
 // Create a pool (bucket) of database connections
 const pool = mysql2.createPool({
@@ -40,50 +39,61 @@ app.get('/db-test', async(req, res) => {
     } catch(err) {
         console.error('Database error: ', err);
     }
-})
+    
+});
 
 // Define our main route ('/')
 // Default route
 app.get('/', (req, res) => {
-    res.sendFile(`${import.meta.dirname}/views/home.html`);
+    res.render('home');
 });
 
 // Contact route -- does not have to match folder name, just a mapping
 app.get('/contact-us', (req, res) => {
-    res.sendFile(`${import.meta.dirname}/views/contact.html`);
+    res.render('contact');
 });
 
 // Thank you route
 app.get('/thank-you', (req, res) => {
-    res.sendFile(`${import.meta.dirname}/views/confirmation.html`);
+    res.render('confirmation', orders);
 });
 
 // Submit order route
 // {"fname":"a","lname":"a","email":"a","method":"pickup","size":"medium","comment":"","discount":"on"}
-app.post('/submit-order', (req, res) => {
+app.post('/submit-order', async(req, res) => {
 
-  // Create a JSON object to store the order data
-  const order = {
-    fname: req.body.fname,
-    lname: req.body.lname,
-    email: req.body.email,
-    method: req.body.method,
-    toppings: req.body.toppings ? req.body.toppings : " none",
-    size: req.body.size,
-    comment: req.body.comment,
-    timestamp: new Date()
-  };
+    const order = req.body;
 
-  // Add order object to orders array
-  orders.push(order);
+    // Create an array of order data
+    const params = [
+        order.fname,
+        order.lname,
+        order.email,
+        order.size,
+        order.method,
+        Array.isArray(order.toppings) ? order.toppings.join(", ") : " none",
+    ];
 
-  // Send user to thank you page
-  res.sendFile(`${import.meta.dirname}/views/confirmation.html`);
+    // Insert new order into database
+    const sql =  `INSERT INTO orders (fname, lname, email, 
+                    size, method, toppings)
+                    VALUES (?, ?, ?, ?, ?, ?)`;
+
+    const result = await pool.execute(sql, params)
+
+    // Send user to thank you page
+    res.render('confirmation', { order } );
 });
 
 // Admin route
-app.get('/admin', (req, res) => {
-    res.send(orders);
+app.get('/admin', async(req, res) => {
+
+    // Read all orders from db
+    // newest first
+    let sql = 'SELECT * FROM orders ORDER BY timestamp DESC';
+    const orders = await pool.query(sql);
+
+    res.render('admin', { orders: orders[0] });
 });
 
 // Start server and listen on designated port
